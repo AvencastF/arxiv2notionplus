@@ -25,6 +25,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.12",
     "mustache": "^4.2.0",
     "then-chrome": "^1.0.7",
     "uikit": "^3.6.22"

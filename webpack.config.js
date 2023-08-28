@@ -40,6 +40,10 @@ module.exports = {
           from: path.join(__dirname, "src", "images", "icon128.png"),
           to: path.join(__dirname, "dist"),
         },
+        {
+          from: path.join(__dirname, "src", "html", "animation.css"),
+          to: path.join(__dirname, "dist"),
+        },
       ],
     }),
   ],
@@ -53,14 +57,14 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      {
-        test: /\.(jpe?g|png|gif|svg|json)$/i,
-        loader: "file-loader",
-        options: {
-          name: "/dist/[name].[ext]",
-          esModule: false,
-        },
-      },
+      // {
+      //   test: /\.(jpe?g|png|gif|svg|json)$/i,
+      //   loader: "file-loader",
+      //   options: {
+      //     name: "/dist/[name].[ext]",
+      //     esModule: false,
+      //   },
+      // },
     ],
   },
 };

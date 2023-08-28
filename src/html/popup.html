@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body>
-    <div class="uk-container">
-      <div class="uk-margin uk-margin-top">
-        <textarea id="js-title" class="uk-input" type="text" placeholder="title"></textarea>
-      </div>
-      <div class="uk-margin">
-        <textarea id="js-abst"
-          class="uk-textarea"
-          rows="7"
-          placeholder="abstract"
-        ></textarea>
-      </div>
-      <div class="uk-margin">
-      <textarea id="js-published" class="uk-input" type="text" placeholder="published date"></textarea>
-      </div>
-      <div class="uk-margin">
-        <textarea id="js-comment" class="uk-input" type="text" placeholder="comment"></textarea>
-      </div>
-      <div class="uk-margin">
-        <select class="uk-select" id="js-select-database"></select>
-        <div id="js-chip-container"></div>
-        <progress
-          class="uk-progress uk-width-1-1 uk-margin"
-          id="js-progressbar"
-          value="0"
-          max="100"
-        ></progress>
-        <button id="js-save" class="uk-icon-button uk-icon-large uk-align-center uk-margin-bottom" uk-icon="heart" />
-      </div>
-      <div class="uk-margin">
-        <div id="js-message-container"></div>
-      </div>
+<head>
+    <link rel="stylesheet" href="animation.css">
+</head>
+<body>
+<div class="uk-container .uk-transition-fade">
+
+    <div class="uk-margin uk-margin-top">
+        <label class="uk-form-label" for="js-title">Title</label>
+        <div class="uk-form-controls">
+            <textarea id="js-title" class="uk-input" type="text" placeholder="title"></textarea>
+        </div>
     </div>
-  </body>
+
+    <div class="uk-margin">
+        <label class="uk-form-label" for="js-abst">Abstract</label>
+        <div class="uk-form-controls">
+        <textarea
+                id="js-abst"
+                class="uk-textarea"
+                rows="7"
+                placeholder="abstract"
+        ></textarea>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="js-published">Published Date</label>
+        <textarea id="js-published" class="uk-input" type="text" placeholder="published date"></textarea>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="js-updated">Updated Date</label>
+        <textarea id="js-updated" class="uk-input" type="text" placeholder="updated date"></textarea>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="js-comment">Comment</label>
+        <textarea id="js-comment" class="uk-input" type="text" placeholder="comment"></textarea>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="js-select-database">Notion Page</label>
+        <select class="uk-select" id="js-select-database"></select>
+        <hr class="uk-divider-icon">
+        <label class="uk-form-label" for="js-subject-container">Subjects</label>
+        <div id="js-subject-container"></div>
+        <hr class="uk-divider-icon">
+        <label class="uk-form-label" for="js-chip-container">Authors</label>
+        <div id="js-chip-container"></div>
+        <hr class="uk-divider-icon">
+        <button id="js-save" class="uk-align-center uk-margin-bottom submit_button">
+            Save to Notion
+        </button>
+    </div>
+    <div class="uk-margin">
+        <div id="js-message-container"></div>
+    </div>
+</div>
+</body>
 </html>
 
