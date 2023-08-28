@@ -1,8 +1,8 @@
 {
-  "name": "arxiv2notionplus",
+  "name": "arxiv2notionplusplus",
   "version": "0.1.0",
   "description": "easy-to-use arXiv clipper",
-  "author": "wangjksjtu <wangjksjtu@gmail.com>",
+  "author": "Yulei Zhang <Avencast1994@gmail.com>",
   "license": "MIT License",
   "scripts": {
     "dev": "webpack --mode development",
@@ -15,19 +15,24 @@
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.0",
     "crx": "^5.0.1",
-    "css-loader": "^5.2.6",
+    "css-loader": "^5.2.7",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^2.7.6",
     "sass": "^1.34.1",
     "sass-loader": "^12.0.0",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^5.37.0",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.12",
+    "fomantic-ui": "^2.9.2",
+    "fomantic-ui-css": "^2.9.2",
+    "jquery": "^3.7.0",
     "mustache": "^4.2.0",
-    "then-chrome": "^1.0.7",
-    "uikit": "^3.6.22"
+    "then-chrome": "^1.0.7"
   }
 }

@@ -1,3 +1,9 @@
+import $ from 'jquery';
+
+window.jQuery = $;
+window.$ = $;
+
+
 export default class Notion {
     constructor() {
         this.token = null;
@@ -35,10 +41,11 @@ export default class Notion {
         }
     }
 
-    async createPage(_data) {
+    async createPage(_data, selectedTags, selectedPage) {
         const data = await _data;
         console.log('data: ', data)
-        const databaseId = document.getElementById("js-select-database").value;
+        const databaseId = selectedPage;
+        console.log(selectedPage)
         const title = data.title;
         const abst = data.abst;
         const paperUrl = data.url;
@@ -49,24 +56,27 @@ export default class Notion {
         const authors = authorsFormatted.split(', ');
         const subjectsFormatted = data.subjects.join(", ");
         const subjects = subjectsFormatted.split(', ');
+        const tags = selectedTags
         const pdf = data.pdf;
 
         const {Client} = require('@notionhq/client');
         const notion = new Client({auth: this.token});
 
-        let subject_multi_select = [];
-        subjects.forEach(function (v) {
-            let obj = {};
-            obj["name"] = v;
-            subject_multi_select.push(obj);
-        });
 
-        let author_multi_select = [];
-        authors.forEach(function (v) {
-            let obj = {};
-            obj["name"] = v;
-            author_multi_select.push(obj);
-        });
+        console.log(subjects, authors, tags)
+        function make_multi_select(lists) {
+            let out_list = [];
+            lists.forEach(function (v) {
+                let obj = {};
+                obj["name"] = v;
+                out_list.push(obj);
+            });
+            return out_list;
+        }
+
+        const subject_multi_select = make_multi_select(subjects)
+        const author_multi_select = make_multi_select(authors)
+        const tags_multi_select = make_multi_select(tags)
 
         try {
             const url = this.apiBase + "pages";
@@ -102,24 +112,13 @@ export default class Notion {
                     id: "comment", type: "url", url: comment,
                 }, Updated: {
                     id: "updated", type: "date", date: {start: updated, end: null},
+                }, Tag: {
+                    id: "tag", type: "multi_select", multi_select: tags_multi_select,
                 },
             };
 
             const data = await notion.pages.create({
-                "parent": parent,
-                "properties": properties,
-                // "children": [
-                //     {
-                //         "object": "block",
-                //         "type": "pdf",
-                //         "pdf": {
-                //             "type": "external",
-                //             "external": {
-                //                 "url": pdf
-                //             }
-                //         }
-                //     }
-                // ]
+                "parent": parent, "properties": properties,
             });
 
             console.log(data);
@@ -140,12 +139,28 @@ export default class Notion {
             const data = await res.json();
 
             data.results.forEach((result) => {
-                const option = `<option value=${result.id}>${result.title[0].text.content}</option>`;
-                document
-                    .getElementById("js-select-database")
-                    .insertAdjacentHTML("beforeend", option);
+                const optionValue = result.id; // The data value of the option you want to add
+                const optionText = result.title[0].text.content; // The text content of the option
+
+                const existingOption = document.querySelector(`#js-select-database .menu .item[data-value="${optionValue}"]`);
+                const defaultTextElement = document.querySelector('#js-select-database').querySelector(".default.text");
+
+                if (!existingOption) {
+                    const option = `<div class="item" data-value="${optionValue}">${optionText}</div>`;
+                    document
+                        .getElementById("js-select-database").querySelector(".menu")
+                        .insertAdjacentHTML("beforeend", option);
+
+                    // defaultTextElement.textContent = optionText;
+                    // defaultTextElement.classList.remove("default");
+
+                    $('#js-select-database').dropdown('refresh').dropdown('set selected', optionValue, false);
+                } else {
+                    console.log("Option already exists.");
+                }
             });
             console.log('retrieveDatabase: ', data);
+            return data;
         } catch (err) {
             console.log("[ERR] " + err);
             throw err;

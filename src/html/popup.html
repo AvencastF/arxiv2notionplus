@@ -2,58 +2,94 @@
 <html>
 <head>
     <link rel="stylesheet" href="animation.css">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <!--    <script src="popup.bundle.js"></script>-->
+
+    <style>
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            width: 350px;
+            margin: 10px;
+            /*height: 100vh; !* Set container height to full viewport height *!*/
+        }
+
+    </style>
 </head>
-<body>
-<div class="uk-container .uk-transition-fade">
+<body style="min-width: 375px; width: 375px;">
 
-    <div class="uk-margin uk-margin-top">
-        <label class="uk-form-label" for="js-title">Title</label>
-        <div class="uk-form-controls">
-            <textarea id="js-title" class="uk-input" type="text" placeholder="title"></textarea>
-        </div>
-    </div>
+<div class="ui form-container">
 
-    <div class="uk-margin">
-        <label class="uk-form-label" for="js-abst">Abstract</label>
-        <div class="uk-form-controls">
-        <textarea
-                id="js-abst"
-                class="uk-textarea"
-                rows="7"
-                placeholder="abstract"
-        ></textarea>
+    <form class="ui form loading" id="js-form" style="width: 100%">
+        <div class="field" id="title_field">
+            <label for="js-title">Title</label>
+            <input type="text" name="Title" placeholder="Title" id="js-title" readonly="">
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="js-published">Published Date</label>
-        <textarea id="js-published" class="uk-input" type="text" placeholder="published date"></textarea>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="js-updated">Updated Date</label>
-        <textarea id="js-updated" class="uk-input" type="text" placeholder="updated date"></textarea>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="js-comment">Comment</label>
-        <textarea id="js-comment" class="uk-input" type="text" placeholder="comment"></textarea>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="js-select-database">Notion Page</label>
-        <select class="uk-select" id="js-select-database"></select>
-        <hr class="uk-divider-icon">
-        <label class="uk-form-label" for="js-subject-container">Subjects</label>
-        <div id="js-subject-container"></div>
-        <hr class="uk-divider-icon">
-        <label class="uk-form-label" for="js-chip-container">Authors</label>
-        <div id="js-chip-container"></div>
-        <hr class="uk-divider-icon">
-        <button id="js-save" class="uk-align-center uk-margin-bottom submit_button">
-            Save to Notion
-        </button>
-    </div>
-    <div class="uk-margin">
-        <div id="js-message-container"></div>
-    </div>
+
+        <div class="field" id="abstract_field">
+            <label for="js-abst">Abstract</label>
+            <textarea type="text" name="Abstract" placeholder="Abstract" id="js-abst" rows="7" readonly=""></textarea>
+        </div>
+
+        <div class="field" id="published_field">
+            <label for="js-published">Published Date</label>
+            <input name="PublishedDate" placeholder="published date" id="js-published" readonly="">
+        </div>
+
+        <div class="field" id="updated_field">
+            <label for="js-updated">Updated Date</label>
+            <input name="UpdatedDate" placeholder="updated date" id="js-updated" readonly="">
+        </div>
+
+        <!--        <div class="field">-->
+        <!--            <label for="js-comment">Comment</label>-->
+        <!--            <input name="Comment" placeholder="comment" id="js-comment"></input>-->
+        <!--        </div>-->
+
+        <div class="ui sub header">Workspace Page</div>
+        <div class="ui fluid search selection dropdown clearable" id="js-select-database">
+            <input type="hidden" name="Page">
+            <i class="dropdown icon"></i>
+            <div class="default text">Workspace Page</div>
+            <div class="menu">
+            </div>
+        </div>
+
+        <div class="ui sub header">Tags</div>
+        <div class="ui fluid multiple search selection dropdown added clearable" id="js-tag-database">
+            <input name="tags" type="hidden">
+            <i class="dropdown icon"></i>
+            <div class="default text">Tags</div>
+            <div class="menu">
+            </div>
+        </div>
+
+        <div class="ui horizontal divider">
+            <i class="bookmark icon" style="margin-right: 1em"></i>
+            Subjects
+        </div>
+
+        <div class="ui horizontal divided list" id="js-subject-container">
+        </div>
+
+        <div class="ui horizontal divider">
+            <i class="users icon" style="margin-right: 1em"></i>
+            Authors
+        </div>
+
+        <div class="ui horizontal divided list" id="js-author-container">
+        </div>
+
+    </form>
+
+    <button id="js-save" class="submit_button">
+        Save to Notion
+    </button>
+
 </div>
+
 </body>
 </html>
 
