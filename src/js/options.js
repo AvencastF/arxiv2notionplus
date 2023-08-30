@@ -1,10 +1,5 @@
-import "../scss/theme.scss";
-import UIKit from "uikit";
-import Icons from "uikit/dist/js/uikit-icons";
 import Mustache from "mustache";
 import NotionClient from "./notion.js";
-
-UIKit.use(Icons);
 
 class TokenManager {
   constructor() {

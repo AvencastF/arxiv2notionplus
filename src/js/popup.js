@@ -176,13 +176,17 @@ class UI {
                 const template = `<i class="item">{{ text }}</i>`;
                 const rendered = Mustache.render(template, {text: l});
 
-                const existingElement = document.querySelector(`#${js_container}.item[data-text="${l}"]`);
+                // const existingElement = document.querySelector(`#${js_container}.item[data-text="${l}"]`);
+                //
+                // if (!existingElement) {
+                //     document
+                //         .getElementById(js_container)
+                //         .insertAdjacentHTML("beforeend", rendered);
+                // }
 
-                if (!existingElement) {
-                    document
-                        .getElementById(js_container)
-                        .insertAdjacentHTML("beforeend", rendered);
-                }
+                document
+                    .getElementById(js_container)
+                    .insertAdjacentHTML("beforeend", rendered);
             });
 
         }
